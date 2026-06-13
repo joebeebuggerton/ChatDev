@@ -198,13 +198,17 @@ graph:
     - id: B
       type: agent
       config:
-        name: gpt-4o
+        name: llama3
         provider: openai
         role: Please summarize the content of the novel.
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-        tooling: []
+              tooling:
+        - type: mcp_remote
+          config:
+            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            timeout: 15
         thinking: null
         memories: []
         retry: null

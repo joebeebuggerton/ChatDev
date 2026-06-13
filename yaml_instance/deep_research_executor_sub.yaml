@@ -19,7 +19,7 @@ graph:
     - id: Content Getter
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           # To be placed in the config.role of the Content Getter node in deep_research_executor_sub.yaml
@@ -68,7 +68,7 @@ graph:
     - id: Searcher
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           ### Role: You are a premier Information Retrieval and Orchestration Expert.

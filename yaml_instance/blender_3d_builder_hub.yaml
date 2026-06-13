@@ -13,7 +13,7 @@ graph:
       description: Defines the raw requirements and object manifest.
       context_window: 0
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         role: |
           # Role
           You are a professional **3D Technical Product Manager**.
@@ -62,7 +62,7 @@ graph:
       description: Splits the spec into Geometry tasks and Decoration tasks.
       context_window: 0
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         role: |
           # Role
           You are a **Technical Planner**.
@@ -109,7 +109,7 @@ graph:
       description: The central brain managing state and routing.
       context_window: 20
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         role: |
           # Role
           You are the **Project Orchestrator**.
@@ -166,7 +166,7 @@ graph:
       description: Applies materials and lighting.
       context_window: 10
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         role: |
           # Role
           You are a **Decorator Architect**.
@@ -202,7 +202,7 @@ graph:
       description: Checks final visual quality.
       context_window: 5
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         role: |
           # Role
           You are the **Art Director**.
@@ -230,7 +230,7 @@ graph:
     - id: Structure_Architect
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |
           # Role
@@ -280,7 +280,7 @@ graph:
     - id: Structure_Reviewer
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |
           # Role

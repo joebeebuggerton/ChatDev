@@ -21,7 +21,7 @@ graph:
     - id: Demand Analyst
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           Role: You are a "Requirements Analysis Expert" in the Deep Research system.
@@ -61,7 +61,7 @@ graph:
     - id: Planner
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           **Role:** You are the "Chief Research Strategist and Chapter-by-Chapter Planner" in the Deep Research system.
@@ -161,7 +161,7 @@ graph:
     - id: Report Writer
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           **Role:** You are the "Chief Report Architect and Analyst" within the Deep Research system.
@@ -249,7 +249,7 @@ graph:
     - id: Quality Reviewer
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           Role: You are the "Critical Quality Inspector and Editorial Supervisor" in the Deep Research system.
@@ -316,7 +316,7 @@ graph:
     - id: Structure Organizer
       type: agent
       config:
-        name: ${MODEL_NAME}
+        name: llama3
         provider: gemini
         role: |-
           **Role:** You are the "Final Report Formatter" in the Deep Research system.
