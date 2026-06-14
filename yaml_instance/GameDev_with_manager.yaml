@@ -18,8 +18,8 @@ graph:
     - id: manager
       type: agent
       config:
-        name:
-        provider:
+        name: qwen2.5-coder:1.5b
+        provider: openai
         role: |-
           You are a manager in the AI driven game development process, responsible for supervising the operations of other AI driven departments and providing targeted suggestions and optimization directions for their work based on the characteristics of this game, preventing them from deviating from the initial concept during the development process and making the game more playable. You can also add your additional ideas to the suggestion, but you need to pay attention to compatibility with the original design. In the workflow, there are also game designers, planners core developer、polish developer、QA agent。
           You will receive game concepts and development plans conveyed to you by game designers and planners, based on which you will need to provide targeted recommendations to core developers, polishing developers, QA agents, and Polish-Refinement.
@@ -63,10 +63,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-              tooling:
-        - type: mcp_remote
+                    tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []
@@ -136,10 +143,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-              tooling:
-        - type: mcp_remote
+                    tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []
@@ -224,10 +238,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-              tooling:
-        - type: mcp_remote
+                    tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []
@@ -238,8 +259,8 @@ graph:
     - id: Core_Developer
       type: agent
       config:
-        name:
-        provider:
+        name: qwen2.5-coder:1.5b
+        provider: openai
         role: |-
           Implement Phase 1 pygame game based on the plan.
 
@@ -323,8 +344,8 @@ graph:
     - id: Polish_Developer
       type: agent
       config:
-        name:
-        provider:
+        name: qwen2.5-coder:1.5b
+        provider: openai
         role: |-
           You are a PROFESSIONAL GAME ARTIST specializing in indie game visual design.
           Transform the Phase 1 game into a visually stunning experience.
@@ -488,8 +509,8 @@ graph:
     - id: QA_Agent
       type: agent
       config:
-        name:
-        provider:
+        name: qwen2.5-coder:1.5b
+        provider: openai
         role: |-
           You are a GAME QUALITY ASSURANCE SPECIALIST.
           Perform final comprehensive review of the game code before execution.
@@ -675,8 +696,8 @@ graph:
     - id: Bug_Fixer
       type: agent
       config:
-        name:
-        provider:
+        name: qwen2.5-coder:1.5b
+        provider: openai
         role: |-
           You are a Bug Fixer. Fix ONLY the specific runtime error without rewriting the entire file.
 

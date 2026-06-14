@@ -7,7 +7,7 @@ graph:
     - id: Summary Department
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           You are a member of a cooperative problem-solving team. Your role is "Summary Synthesis Lead".
@@ -41,7 +41,7 @@ graph:
     - id: Technician
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           You are a member of a cooperative problem-solving team. Your role is "Technical Implementation Expert".
@@ -73,7 +73,7 @@ graph:
     - id: Scheme Generater
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |
           You are a member of a cooperative problem-solving team. Your role is "Solution Design Expert".
@@ -86,10 +86,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-              tooling:
-        - type: mcp_remote
+                    tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []
@@ -100,7 +107,7 @@ graph:
     - id: Reasoner
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           You are a member of a cooperative problem-solving team. Your role is "Logical Reasoning Expert".
@@ -116,10 +123,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-              tooling:
-        - type: mcp_remote
+                    tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking:
           type: reflection
@@ -133,7 +147,7 @@ graph:
     - id: Information Searcher
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           You are a member of a cooperative problem-solving team. Your role is "Information Gathering Expert".
@@ -163,7 +177,7 @@ graph:
     - id: Demand Analyze
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           You are a member of a cooperative problem-solving team.

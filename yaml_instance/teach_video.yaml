@@ -16,8 +16,8 @@ graph:
     - id: Video Concat
       type: agent
       config:
-        name: llama3
-        provider: gemini
+        name: llama3.1
+        provider: openai
         role: Please call `describe_available_files` first to check the paths of `.mp4` video files in the current directory; the names of the different mp4 files represent their content sequence. Sort them based on their names, and call the `concat_videos` tool to concatenate them. Note that `concat_videos` expects a list constructed of sorted, absolute paths as input.
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
@@ -38,8 +38,8 @@ graph:
     - id: Content Composer
       type: agent
       config:
-        name: llama3
-        provider: gemini
+        name: llama3.1
+        provider: openai
         role: |-
           You are a rigorous academic teaching assistant. Please generate a concise teaching blueprint/syllabus from the raw session data you receive.
 
@@ -50,10 +50,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-             tooling:
-        - type: mcp_remote
+                   tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []
@@ -63,8 +70,8 @@ graph:
     - id: Code Generator
       type: agent
       config:
-        name: llama3
-        provider: gemini
+        name: qwen2.5-coder
+        provider: openai
         role: |-
           You are a **Manim Animation Generation Agent** specializing in automated planning, source code creation, and direct engine execution.
           You will receive a slide layout prompt (in Markdown format) representing the core topic, along with context concerning its position in the overall course map.
@@ -139,10 +146,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-             tooling:
-        - type: mcp_remote
+                   tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []
@@ -152,8 +166,8 @@ graph:
     - id: Concluder
       type: agent
       config:
-        name: llama3
-        provider: gemini
+        name: llama3.1
+        provider: openai
         role: |-
           Please call `describe_available_files` first to check the paths of `.py` script files in the current workspace. Then use the `render_manim` tool to render them. This tool expects only the `script_path` (absolute path of your Python script) as an argument. If multiple Python scripts are found, you must run `render_manim` on each separate script sequentially.
           If any compilation trace or execution fault is returned during `render_manim`, output the detailed error stack trace along with the word "ERROR".
@@ -176,8 +190,8 @@ graph:
     - id: Paginator
       type: agent
       config:
-        name: llama3
-        provider: gemini
+        name: llama3.1
+        provider: openai
         role: |-
           You are a professional document formatting specialist, skilled at inserting appropriate pagination markers into raw educational scripts.
 
@@ -211,10 +225,17 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}
-             tooling:
-        - type: mcp_remote
+                   tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking: null
         memories: []

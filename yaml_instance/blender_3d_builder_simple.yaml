@@ -14,7 +14,7 @@ graph:
       description: ''
       context_window: 0
       config:
-        name: gemini-3-pro-preview
+        name: gemini-2.53-pro
         role: |
           # Role
           You are a professional **3D Technical Product Manager**.
@@ -69,7 +69,7 @@ graph:
       description: ''
       context_window: 0
       config:
-        name: gemini-3-pro-preview
+        name: qwen2.5-coder:1.5b
         role: |
           # Role
           You are the **Technical Planner**.
@@ -110,7 +110,7 @@ graph:
           2. [Structure]: Construct 'Tower_Body' using a cylinder (Radius: 2m, Height: 5m) on top of the hill. Material: 'Grey Stone Bricks'.
           3. [Details]: Create 'Anchor_Window' on the tower wall and attach a simple arched window geometry.
           4. [Lighting]: Setup a Sun light (Strength 5) and set Camera to view the tower.
-        provider: gemini
+        provider: openai
 #        base_url: ${BASE_URL}
         api_key: ${API_KEY}
         params: {}

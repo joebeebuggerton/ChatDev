@@ -11,7 +11,7 @@ graph:
         base_url: ${BASE_URL}
         api_key: ${API_KEY}
         provider: openai
-        name: llama3
+        name: llama3.1
         role: |
           You are an editor, skilled at expanding and polishing content provided by the user.
           The user will provide a piece of text, and you need to expand it into an article of no less than 2000 words, requiring multiple paragraphs, fluent language, and rich content.
@@ -21,7 +21,7 @@ graph:
     - id: A
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |
           You are a writer, skilled at generating a full article based on a word or phrase input by the user.
@@ -32,10 +32,17 @@ graph:
         params:
           temperature: 0.1
           max_tokens: 4000
-              tooling:
-        - type: mcp_remote
+                    tooling:
+                - type: mcp_local
           config:
-            server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+            command: npx
+            args:
+              - "-y"
+              - "@modelcontextprotocol/server-github"
+            env:
+              GITHUB_PERSONAL_ACCESS_TOKEN: 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
+            timeout: 30
+            timeout: 15
             timeout: 15
         thinking:
           type: reflection
@@ -61,7 +68,7 @@ graph:
         memory_path: memory_test/test.json
         embedding:
           provider: openai
-          model: text-embedding-ada-002
+          model: nomic-embed-text
           api_key: ${API_KEY}
           base_url: ${BASE_URL}
           params: {}

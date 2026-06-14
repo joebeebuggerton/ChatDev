@@ -1,0 +1,63 @@
+version: 0.4.0
+vars:
+  BASE_URL: "http://localhost:11434/v1" # Local Ollama OpenAI-compatible endpoint
+  API_KEY: "ollama"                     # Ollama does not require a key, but a placeholder must be set
+
+graph:
+  id: mcp_augmented_developer_pipeline
+  description: "An English dev workflow augmenting local Ollama models with Pieces LTM and GitHub MCP tools."
+  is_majority_voting: false
+  start:
+    - Researcher
+  nodes:
+    - id: Researcher
+      type: agent
+      config:
+        base_url: ${BASE_URL}
+        api_key: ${API_KEY}
+        provider: openai
+        name: qwen2.5-coder:1.5b  # Replace with your local Ollama coder model
+        role: |
+          You are an expert software developer and technical researcher. 
+          Your goal is to inspect issues, explore code context, and draft structured code changes.
+          
+          You have access to two major MCP tool suites:
+            1. Pieces OS LTM (mcp_remote): Lets you query your desktop's historical workflow, clipboard captures, and saved developer context.
+            2. GitHub Server (mcp_local): Lets you view, search, and manage repositories directly on GitHub.
+          
+          Before proposing a solution, use your tools to load surrounding context, look up any relevant snippets, and verify existing setups. Deliver a structured summary of what you found.
+        tooling:
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              env:
+                GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}" # Reads from your .env file
+              timeout: 30
+        params:
+          temperature: 0.1
+          max_tokens: 2000
+
+    - id: Writer
+      type: agent
+      config:
+        base_url: ${BASE_URL}
+        api_key: ${API_KEY}
+        provider: openai
+        name: llama3.1            # Replace with your local Ollama general assistant model
+        role: |
+          You are a technical document writer and code reviewer.
+          Your task is to take the technical research and draft code modifications provided by the Researcher agent, and format them into clear, production-ready English instructions, Markdown guides, or pull request descriptions.
+        params:
+          temperature: 0.1
+          max_tokens: 2000
+
+  edges:
+    - from: Researcher
+      to: Writer

@@ -38,7 +38,7 @@ graph:
     - id: Programmer Code Review
       type: agent
       config:
-        name: llama3
+        name: qwen2.5-coder:1.5b
         role: |-
           ${COMMON_PROMPT}
           You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
@@ -62,7 +62,21 @@ graph:
                 - name: search_in_files
                 - name: save_file
                 - name: list_directory
-              timeout:
+              
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+
+          # C. Local GitHub Repository Integration
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              inherit_env: true
+              timeout: 30
         thinking:
         memories: []
         retry:
@@ -71,7 +85,7 @@ graph:
     - id: Programmer Test Modification
       type: agent
       config:
-        name: llama3
+        name: qwen2.5-coder:1.5b
         role: |-
           ${COMMON_PROMPT}
           You are Programmer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
@@ -95,7 +109,21 @@ graph:
                 - name: search_in_files
                 - name: save_file
                 - name: list_directory
-              timeout:
+              
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+
+          # C. Local GitHub Repository Integration
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              inherit_env: true
+              timeout: 30
         thinking:
         memories: []
         retry:
@@ -104,7 +132,7 @@ graph:
     - id: Chief Executive Officer
       type: agent
       config:
-        name: llama3
+        name: gpt-oss:20b
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -166,7 +194,7 @@ graph:
     - id: Programmer Code Complete
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -190,7 +218,21 @@ graph:
                 - name: search_in_files
                 - name: save_file
                 - name: list_directory
-              timeout:
+              
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+
+          # C. Local GitHub Repository Integration
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              inherit_env: true
+              timeout: 30
         thinking:
         memories: []
         retry:
@@ -214,7 +256,7 @@ graph:
     - id: Programmer Coding
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -238,7 +280,21 @@ graph:
                 - name: search_in_files
                 - name: save_file
                 - name: list_directory
-              timeout:
+              
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+
+          # C. Local GitHub Repository Integration
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              inherit_env: true
+              timeout: 30
         thinking:
         memories: []
         retry:
@@ -265,7 +321,7 @@ graph:
     - id: Chief Product Officer
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -323,7 +379,7 @@ graph:
     - id: Programmer Test Error Summary
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -360,7 +416,7 @@ graph:
     - id: Code Reviewer
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -379,7 +435,21 @@ graph:
                 - name: read_file_segment
                 - name: search_in_files
                 - name: list_directory
-              timeout:
+              
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+
+          # C. Local GitHub Repository Integration
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              inherit_env: true
+              timeout: 30
         thinking:
         memories: []
         retry:
@@ -458,7 +528,7 @@ graph:
     - id: Software Test Engineer
       type: agent
       config:
-        name: llama3
+        name: llama3.1
         provider: openai
         role: |-
           ${COMMON_PROMPT}
@@ -488,7 +558,21 @@ graph:
                 - name: search_in_files
                 - name: save_file
                 - name: list_directory
-              timeout:
+          
+          - type: mcp_remote
+            config:
+              server: http://localhost:39300/model_context_protocol/2025-03-26/sse
+              timeout: 15
+
+          # C. Local GitHub Repository Integration
+          - type: mcp_local
+            config:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-github"
+              inherit_env: true
+              timeout: 30
         thinking:
         memories: []
         retry:
